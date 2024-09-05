@@ -1,0 +1,11 @@
+<resources>
+    <string name="app_name">dog-care-android</string>
+    <string name="aceptar">Aceptar</string>
+    <string name="familia">Familia</string>
+    <string name="duenhos">DUEÑOS</string>
+    <string name="paseo">Paseo</string>
+    <string name="banho">Baño</string>
+    <string name="perros">PERROS</string>
+    <string name="selecciona_los_perros_para_registrar_el_paseo">Selecciona los perros para registrar el paseo:</string>
+    <string name="registrar_paseo">Registrar Paseo</string>
+</resources>
