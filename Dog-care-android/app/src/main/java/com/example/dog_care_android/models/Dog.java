@@ -8,7 +8,7 @@ public class Dog {
 
     private long id;
     private String name;
-    private Date birthDate;
+    private String birthDate;
     private int paseosDiarios;
     private Date bathDate;
     private int cantidadBanos;
@@ -30,11 +30,11 @@ public class Dog {
         this.name = name;
     }
 
-    public Date getBirthDate() {
+    public String getBirthDate() {
         return birthDate;
     }
 
-    public void setBirthDate(Date birthDate) {
+    public void setBirthDate(String birthDate) {
         this.birthDate = birthDate;
     }
 

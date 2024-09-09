@@ -12,7 +12,9 @@ import android.widget.EditText;
 import android.widget.Toast;
 
 import com.example.dog_care_android.R;
+import com.example.dog_care_android.interfaces.DogService;
 import com.example.dog_care_android.interfaces.FamilyService;
+import com.example.dog_care_android.interfaces.OwnerService;
 import com.example.dog_care_android.models.Family;
 import com.example.dog_care_android.retrofit.RetrofitClientInstance;
 
@@ -47,13 +49,14 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         SharedPreferences prefs = getSharedPreferences("dogcare", MODE_PRIVATE);
         long familyId = prefs.getLong("FAMILY_ID", -1);
 
+        Log.d("FAMILY_ID", "ID de la familia: " + familyId);
+
 
 
         if (familyId != -1) {
-            Intent intent = new Intent(MainActivity.this, MenuDog.class);
-            intent.putExtra("FAMILY_ID", familyId);
-            startActivity(intent);
-            finish(); // Opcional: Terminar la actividad actual
+            checkFamilyDetails(familyId);
+        }else{
+            Toast.makeText(this, "Error al recibir el ID de la familia", Toast.LENGTH_SHORT).show();
         }
 
 
@@ -115,4 +118,48 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 break;
         }
     }
+
+    private void checkFamilyDetails(long familyId) {
+        // Crear instancia de Retrofit
+        Retrofit retrofit = RetrofitClientInstance.getRetrofitInstance();
+        FamilyService familyService = retrofit.create(FamilyService.class);
+
+        // Hacer una solicitud para obtener los detalles de la familia
+        Call<Family> call = retrofit.create(FamilyService.class).getFamilyById(familyId);
+        call.enqueue(new Callback<Family>() {
+            @Override
+            public void onResponse(Call<Family> call, Response<Family> response) {
+                if (response.isSuccessful()) {
+                    Family family = response.body();
+                    if (family != null) {
+                        boolean hasOwners = family.getOwners() != null && !family.getOwners().isEmpty();
+                        boolean hasDogs = family.getDogs() != null && !family.getDogs().isEmpty();
+                        String nombreFamilia = family.getName();
+
+                        if (hasOwners && hasDogs) {
+                            Intent intent = new Intent(MainActivity.this, MenuDog.class);
+                            intent.putExtra("FAMILY_ID", familyId);
+                            startActivity(intent);
+                        } else {
+                            Intent intent = new Intent(MainActivity.this, AnhadirOwners.class);
+                            intent.putExtra("FAMILY_ID", familyId);
+                            intent.putExtra("nombreFamilia", nombreFamilia);
+                            startActivity(intent);
+                        }
+                        finish(); // Opcional: Terminar la actividad actual
+                    } else {
+                        Toast.makeText(MainActivity.this, "Error: Familia no encontrada", Toast.LENGTH_SHORT).show();
+                    }
+                } else {
+                    Toast.makeText(MainActivity.this, "Error al obtener detalles de la familia", Toast.LENGTH_SHORT).show();
+                }
+            }
+
+            @Override
+            public void onFailure(Call<Family> call, Throwable t) {
+                Toast.makeText(MainActivity.this, "Error en la conexión", Toast.LENGTH_SHORT).show();
+            }
+        });
+    }
+
 }

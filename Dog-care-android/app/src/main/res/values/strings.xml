@@ -8,4 +8,6 @@
     <string name="perros">PERROS</string>
     <string name="selecciona_los_perros_para_registrar_el_paseo">Selecciona los perros para registrar el paseo:</string>
     <string name="registrar_paseo">Registrar Paseo</string>
+    <string name="owner_name">Nombre del dueño</string>
+    <string name="dog_name">Nombre del perro</string>
 </resources>

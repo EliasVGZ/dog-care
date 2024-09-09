@@ -4,21 +4,28 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    android:background="@color/green">
+    android:background="@color/white"
+    android:padding="16dp">
 
     <TextView
         android:id="@+id/tvFamilyName"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textSize="24sp"
+        android:textColor="@color/black"
         android:layout_gravity="center_horizontal"
-        android:layout_marginTop="16dp"/>
+        android:layout_marginTop="16dp"
+        android:textStyle="bold"/>
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_weight="1"
-        android:orientation="vertical">
+        android:orientation="vertical"
+        android:background="@color/lightGray"
+        android:padding="16dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginBottom="16dp">
 
         <LinearLayout
             android:id="@+id/llAddOwner"
@@ -26,28 +33,34 @@
             android:layout_height="0dp"
             android:layout_weight="1"
             android:orientation="vertical"
-            android:layout_marginTop="16dp">
-
-            <Button
-                android:id="@+id/btnAccept"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="AÑADIR A LA LISTA"
-                android:layout_gravity="center_horizontal"
-                android:layout_marginTop="16dp"/>
+            android:layout_marginBottom="16dp">
 
             <EditText
                 android:id="@+id/etOwnerName"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:hint="Nombre del dueño"/>
+                android:hint="@string/owner_name"
+                android:padding="12dp"
+                android:background="@drawable/rounded_edittext"
+                android:textColor="@color/black"
+                android:textColorHint="@color/gray"
+                android:layout_marginBottom="16dp"
+                android:gravity="center"/>
+
+            <Button
+                android:id="@+id/btnAccept"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="AÑADIR DUEÑO"
+                android:textColor="@color/white"
+                android:background="@color/primaryColor"
+                android:layout_marginBottom="16dp"/>
 
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/rvOwners"
                 android:layout_width="match_parent"
                 android:layout_height="0dp"
-                android:layout_weight="1"
-                android:layout_marginTop="16dp"/>
+                android:layout_weight="1"/>
         </LinearLayout>
 
         <LinearLayout
@@ -55,51 +68,60 @@
             android:layout_width="match_parent"
             android:layout_height="0dp"
             android:layout_weight="1"
-            android:orientation="vertical"
-            android:layout_marginTop="16dp">
-
-            <Button
-                android:id="@+id/btnAddDog"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="AÑADIR PERRO"
-                android:layout_gravity="center_horizontal"
-                android:layout_marginTop="16dp"/>
+            android:orientation="vertical">
 
             <EditText
                 android:id="@+id/etDogName"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:hint="Nombre del perro"/>
+                android:hint="@string/dog_name"
+                android:padding="12dp"
+                android:background="@drawable/rounded_edittext"
+                android:textColor="@color/black"
+                android:textColorHint="@color/gray"
+                android:layout_marginBottom="16dp"
+                android:gravity="center"/>
+            <TextView
+                android:id="@+id/tvSelectedBirthDate"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textColor="@color/black"
+                android:textAlignment="center"
+                android:layout_marginBottom="16dp"/>
 
             <Button
                 android:id="@+id/btnSelectBirthDate"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Seleccionar cumpleaños del perro"/>
-
-            <TextView
-                android:id="@+id/tvSelectedBirthDate"
+                android:text="Fecha de nacimiento"
+                android:textColor="@color/white"
+                android:background="@color/primaryColor"
+                android:layout_marginBottom="16dp"/>
+            <Button
+                android:id="@+id/btnAddDog"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:hint="Fecha de nacimiento seleccionada"
-                android:textAlignment="center"
-                android:layout_marginTop="8dp"/>
+                android:text="AÑADIR PERRO"
+                android:background="@color/primaryColor"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginTop="16dp"/>
+
+
 
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/rvDogs"
                 android:layout_width="match_parent"
                 android:layout_height="0dp"
-                android:layout_weight="1"
-                android:layout_marginTop="16dp"/>
+                android:layout_weight="1"/>
         </LinearLayout>
     </LinearLayout>
 
     <Button
         android:id="@+id/btnFinalize"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="FINALIZAR"
-        android:layout_gravity="center_horizontal"
-        android:layout_marginTop="16dp"/>
+        android:text="Finalizar"
+        android:textColor="@color/white"
+        android:background="@color/green"
+        android:layout_marginBottom="16dp"/>
 </LinearLayout>

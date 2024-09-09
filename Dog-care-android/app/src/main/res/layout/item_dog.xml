@@ -3,7 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:layout_margin="8dp"
+    android:layout_margin="4dp"
     app:cardCornerRadius="8dp"
     app:cardBackgroundColor="@color/card">
 
@@ -11,23 +11,25 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical"
-        android:padding="16dp">
+        android:padding="8dp">
 
         <TextView
             android:id="@+id/dogNameTextView"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:textSize="25sp"
-            android:layout_marginTop="16dp"
-            android:gravity="center"/>
+            android:textSize="18sp"
+            android:layout_marginTop="8dp"
+            android:gravity="center"
+            android:textColor="@color/black"/>
 
         <TextView
             android:id="@+id/dogDetailsTextView"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:textSize="15sp"
-            android:layout_marginTop="16dp"
-            android:gravity="center"/>
+            android:textSize="12sp"
+            android:layout_marginTop="8dp"
+            android:gravity="center"
+            android:textColor="@color/gray"/>
 
     </LinearLayout>
 
