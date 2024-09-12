@@ -25,23 +25,28 @@ public class DogService {
     //Crear perro
     public Dog crearPerro(Long familia_id, Dog perro){
 
-        perro.setFamily(familyRepository.findById(familia_id).get());
+        perro.setFamily(familyRepository.findById(familia_id).orElse(null));
 
         return dogRepository.save(perro);
     }
-
 
     //Listar perros
     public List<Dog> allDogs(){
         return dogRepository.findAll();
     }
 
-    //Buscar perro
-
 
     //Borrar perro
     public void borrarPerro(Long id){
         dogRepository.deleteById(id);
+    }
+
+    //Actualizar perro
+    public Dog actualizarPerro(Long id, Dog perro){
+        Dog perroActualizado = dogRepository.findById(id).orElse(null);
+        perroActualizado.setName(perro.getName());
+        perroActualizado.setBirthDate(perro.getBirthDate());
+        return dogRepository.save(perroActualizado);
     }
 
 

@@ -1,4 +1,4 @@
-package com.example.dog_care_android;
+package com.example.dog_care_android.adaptadores;
 
 import android.view.LayoutInflater;
 import android.view.View;

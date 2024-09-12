@@ -1,7 +1,5 @@
 package com.example.dog_care_android.activitys;
 
-import static android.provider.Settings.System.DATE_FORMAT;
-
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -19,10 +17,9 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.example.dog_care_android.AddDogAdapter;
+import com.example.dog_care_android.adaptadores.AddDogAdapter;
 import com.example.dog_care_android.R;
 import com.example.dog_care_android.adaptadores.AddOwnerAdapter;
-import com.example.dog_care_android.adaptadores.OwnerAdapter;
 import com.example.dog_care_android.interfaces.DogService;
 import com.example.dog_care_android.interfaces.FamilyService;
 import com.example.dog_care_android.interfaces.OwnerService;

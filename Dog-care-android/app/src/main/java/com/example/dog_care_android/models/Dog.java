@@ -10,17 +10,10 @@ public class Dog {
     private String name;
     private String birthDate;
     private int paseosDiarios;
-    private Date bathDate;
+    private String bathDate;
     private int cantidadBanos;
-    private Date lastWalkDate;
+    private String lastWalkDate;
 
-    public Date getLastWalkDate() {
-        return lastWalkDate;
-    }
-
-    public void setLastWalkDate(Date lastWalkDate) {
-        this.lastWalkDate = lastWalkDate;
-    }
 
     public String getName() {
         return name;
@@ -54,13 +47,6 @@ public class Dog {
         this.paseosDiarios = paseosDiarios;
     }
 
-    public Date getBathDate() {
-        return bathDate;
-    }
-
-    public void setBathDate(Date bathDate) {
-        this.bathDate = bathDate;
-    }
 
     public int getCantidadBanos() {
         return cantidadBanos;
@@ -69,4 +55,22 @@ public class Dog {
     public void setCantidadBanos(int cantidadBanos) {
         this.cantidadBanos = cantidadBanos;
     }
+
+    public String getBathDate() {
+        return bathDate;
+    }
+
+    public void setBathDate(String bathDate) {
+        this.bathDate = bathDate;
+    }
+
+    public String getLastWalkDate() {
+        return lastWalkDate;
+    }
+
+    public void setLastWalkDate(String lastWalkDate) {
+        this.lastWalkDate = lastWalkDate;
+    }
+
+
 }

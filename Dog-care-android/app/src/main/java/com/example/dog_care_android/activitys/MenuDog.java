@@ -15,6 +15,7 @@ import com.example.dog_care_android.adaptadores.DogsAdapter;
 import com.example.dog_care_android.adaptadores.OwnerAdapter;
 import com.example.dog_care_android.interfaces.FamilyService;
 import com.example.dog_care_android.interfaces.OwnerService;
+import com.example.dog_care_android.models.Dog;
 import com.example.dog_care_android.models.Family;
 import com.example.dog_care_android.retrofit.RetrofitClientInstance;
 
@@ -28,6 +29,7 @@ public class MenuDog extends AppCompatActivity implements View.OnClickListener{
     private long familyId;
     private FamilyService familyService;
     private RecyclerView rvOwners, rvDogs;
+    private DogsAdapter dogsAdapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -63,7 +65,6 @@ public class MenuDog extends AppCompatActivity implements View.OnClickListener{
                 if (response.isSuccessful()) {
                     Family family = response.body();
                     if (family != null) {
-                        // Aquí puedes acceder a family.getOwners() y family.getDogs()
                         displayFamilyData(family);
                     }
                 } else {
@@ -82,16 +83,22 @@ public class MenuDog extends AppCompatActivity implements View.OnClickListener{
         TextView familyNameTextView = findViewById(R.id.tvFamilyName);
         familyNameTextView.setText(family.getName());
 
-        // Configurar RecyclerView para Dueños
-        rvOwners.setLayoutManager(new LinearLayoutManager(this));
-        OwnerAdapter ownersAdapter = new OwnerAdapter(family.getOwners());
-        rvOwners.setAdapter(ownersAdapter);
+        Long dogId = family.getDogs().isEmpty() ? null : family.getDogs().get(0).getId();
 
         // Configurar RecyclerView para Perros
         rvDogs.setLayoutManager(new LinearLayoutManager(this));
         DogsAdapter dogsAdapter = new DogsAdapter(family.getDogs());
         rvDogs.setAdapter(dogsAdapter);
+
+        // Configurar RecyclerView para Dueños y pasar el adaptador de perros
+        rvOwners.setLayoutManager(new LinearLayoutManager(this));
+        OwnerAdapter ownersAdapter = new OwnerAdapter(family.getOwners(), dogId, dogsAdapter);
+        rvOwners.setAdapter(ownersAdapter);
     }
+
+
+
+
 
 
     @Override

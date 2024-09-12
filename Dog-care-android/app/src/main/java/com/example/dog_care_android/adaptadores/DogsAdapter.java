@@ -16,12 +16,16 @@ import com.example.dog_care_android.R;
 import com.example.dog_care_android.models.DateUtils;
 import com.example.dog_care_android.models.Dog;
 
+
+import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
 import java.util.Locale;
+import java.util.Objects;
 import java.util.TimeZone;
+
 
 public class DogsAdapter extends RecyclerView.Adapter<DogsAdapter.DogViewHolder> {
 
@@ -45,9 +49,9 @@ public class DogsAdapter extends RecyclerView.Adapter<DogsAdapter.DogViewHolder>
     public void onBindViewHolder(DogViewHolder holder, int position) {
         Dog dog = dogs.get(position);
 
-        // Formatear la fecha usando el método de utilidades
-        String formattedLastWalkDate = dog.getLastWalkDate() != null ? DateUtils.convertToLocalTime(dog.getLastWalkDate()) : "No disponible";
-        String formattedBathDate = dog.getBathDate() != null ? DateUtils.convertToLocalTime(dog.getBathDate()) : "No disponible";
+        // Si las fechas son null, se muestra "No disponible", de lo contrario se muestra la fecha directamente
+        String formattedLastWalkDate = dog.getLastWalkDate() != null ? convertUTCToLocal(dog.getLastWalkDate()) : "No disponible";
+        String formattedBathDate = dog.getBathDate() != null ? dog.getBathDate() : "No disponible";
 
         // Usar Html.fromHtml para mostrar en párrafos separados
         String details = "<p>Paseos hoy: " + dog.getPaseosDiarios() + "</p>" +
@@ -58,6 +62,32 @@ public class DogsAdapter extends RecyclerView.Adapter<DogsAdapter.DogViewHolder>
         holder.dogNameTextView.setText(dog.getName());
         holder.dogDetailsTextView.setText(htmlText);
     }
+
+    public String convertUTCToLocal(String utcDateString) {
+        SimpleDateFormat utcFormat = new SimpleDateFormat("dd/MM/yyyy HH:mm:ss");
+        utcFormat.setTimeZone(TimeZone.getTimeZone("UTC"));
+
+        SimpleDateFormat localFormat = new SimpleDateFormat("dd/MM/yyyy HH:mm:ss");
+        localFormat.setTimeZone(TimeZone.getDefault());
+
+        try {
+            // Parsear la fecha UTC
+            Date date = utcFormat.parse(utcDateString);
+
+            // Crear una instancia de Calendar y añadir 2 horas
+            Calendar calendar = Calendar.getInstance();
+            calendar.setTime(date);
+            calendar.add(Calendar.HOUR_OF_DAY, 2);
+
+            // Convertir a formato local
+            Date newDate = calendar.getTime();
+            return localFormat.format(newDate);
+        } catch (ParseException e) {
+            e.printStackTrace();
+            return null;
+        }
+    }
+
 
 
     @Override
@@ -75,5 +105,16 @@ public class DogsAdapter extends RecyclerView.Adapter<DogsAdapter.DogViewHolder>
             dogDetailsTextView = itemView.findViewById(R.id.dogDetailsTextView);
         }
     }
+
+    // Método para actualizar la lista de perros
+    public void updateDogList(List<Dog> newDogList) {
+        this.dogs = newDogList;
+        notifyDataSetChanged();
+    }
+
+
+
+
+
 }
 

@@ -16,7 +16,7 @@
         android:theme="@style/Theme.Dogcareandroid"
         tools:targetApi="31">
         <activity
-            android:name=".AddDogAdapter"
+            android:name=".adaptadores.AddDogAdapter"
             android:exported="false" />
         <activity
             android:name=".adaptadores.AddOwnerAdapter"
