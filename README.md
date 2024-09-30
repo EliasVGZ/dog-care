@@ -1,6 +1,6 @@
 # Aplicación de Cuidado para Perros 🐶💚
 
-Este proyecto es una aplicación diseñada para gestionar los cuidados mínimos de los perros ya veteranos que necesitan más atención y cuidado. Este proyecto se está desarrollando como una práctica para explorar y aplicar tecnologías modernas en el desarrollo de software.
+Este proyecto se está desarrollando como una práctica para explorar y aplicar tecnologías modernas en el desarrollo de software.
 
 ## 📄 Descripción
 
