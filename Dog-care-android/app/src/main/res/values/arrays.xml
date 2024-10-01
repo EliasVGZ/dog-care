@@ -1,0 +1,6 @@
+<resources>
+    <string-array name="opciones_owner">
+        <item>Editar dueño</item>
+        <item>Eliminar dueño</item>
+    </string-array>
+</resources>

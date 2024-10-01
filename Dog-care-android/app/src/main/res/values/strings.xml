@@ -1,6 +1,7 @@
 <resources>
     <string name="app_name">dog-care-android</string>
     <string name="aceptar">Aceptar</string>
+    <string name="cancelar">Cancelar</string>
     <string name="familia">Familia</string>
     <string name="duenhos">DUEÑOS</string>
     <string name="paseo">Paseo</string>
@@ -10,4 +11,6 @@
     <string name="registrar_paseo">Registrar Paseo</string>
     <string name="owner_name">Nombre del dueño</string>
     <string name="dog_name">Nombre del perro</string>
+    <string name="ingrese_el_nuevo_nombre">Ingrese el nuevo nombre</string>
+    <string name="nombre_duenho">Nombre del dueño</string>
 </resources>

@@ -84,6 +84,7 @@ public class MenuDog extends AppCompatActivity implements View.OnClickListener{
         familyNameTextView.setText(family.getName());
 
         Long dogId = family.getDogs().isEmpty() ? null : family.getDogs().get(0).getId();
+        Long ownerId = family.getOwners().isEmpty() ? null : family.getOwners().get(0).getId();
 
         // Configurar RecyclerView para Perros
         rvDogs.setLayoutManager(new LinearLayoutManager(this));
@@ -92,7 +93,7 @@ public class MenuDog extends AppCompatActivity implements View.OnClickListener{
 
         // Configurar RecyclerView para Dueños y pasar el adaptador de perros
         rvOwners.setLayoutManager(new LinearLayoutManager(this));
-        OwnerAdapter ownersAdapter = new OwnerAdapter(family.getOwners(), dogId, dogsAdapter);
+        OwnerAdapter ownersAdapter = new OwnerAdapter(family.getOwners(), dogId, ownerId, familyId, dogsAdapter);
         rvOwners.setAdapter(ownersAdapter);
     }
 

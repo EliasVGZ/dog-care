@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:padding="16dp"
+    android:background="@color/card">
+
+    <!-- Etiqueta que muestra el nombre actual del dueño -->
+    <TextView
+        android:id="@+id/ownerNameLabel"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/nombre_duenho"
+        android:textSize="16sp"
+        android:layout_marginBottom="8dp"
+        android:layout_gravity="center"/>
+
+    <!-- Campo de texto para ingresar el nuevo nombre -->
+    <EditText
+        android:id="@+id/ownerNameTextView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="@string/ingrese_el_nuevo_nombre"
+        android:inputType="textPersonName"
+        android:gravity="center"/>
+
+
+
+</LinearLayout>

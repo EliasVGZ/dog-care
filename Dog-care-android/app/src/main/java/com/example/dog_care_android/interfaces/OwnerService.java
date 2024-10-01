@@ -3,6 +3,7 @@ package com.example.dog_care_android.interfaces;
 import com.example.dog_care_android.models.Dog;
 import com.example.dog_care_android.models.Owner;
 
+import okhttp3.RequestBody;
 import retrofit2.Call;
 import retrofit2.http.Body;
 import retrofit2.http.DELETE;
@@ -10,6 +11,8 @@ import retrofit2.http.GET;
 import retrofit2.http.POST;
 import retrofit2.http.PUT;
 import retrofit2.http.Path;
+
+import java.util.List;
 import java.util.Map;
 
 // Interfaz de Retrofit para OwnerService
@@ -20,16 +23,22 @@ public interface OwnerService {
     Call<Owner> createOwner(@Path("familyId") Long familyId, @Body Owner owner);
 
     // Eliminar un dueño por ID
-    @DELETE("/owner/{id}")
-    Call<Void> eliminarDueno(@Path("id") Long id);
+    @DELETE("/owner/{ownerId}")
+    Call<Void> eliminarDueno(@Path("ownerId") Long id);
 
     // Buscar un dueño por ID
-    @GET("/owner/{id}")
-    Call<Owner> buscarDueno(@Path("id") Long id);
+    // Buscar dueño por family_id
+    @GET("/owner/family/{familyId}")
+    Call<List<Owner>> getOwnerByFamilyId(@Path("familyId") Long familyId);
+
+
+
 
     // Actualizar el nombre de un dueño
-    @PUT("/owner/{id}")
-    Call<Owner> updateOwnerName(@Path("id") long id, @Body Map<String, String> requestBody);
+    @PUT("/owner/{ownerId}/name")
+    Call<Owner> updateOwnerName(@Path("ownerId") Long ownerId, @Body RequestBody newName);
+
+
 
     // Registrar un paseo con un perro
     @POST("/owner/{ownerId}/dog/{dogId}/paseo")

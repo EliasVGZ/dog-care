@@ -13,14 +13,27 @@
         android:orientation="vertical"
         android:padding="8dp">
 
-        <TextView
-            android:id="@+id/ownerNameTextView"
+        <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:textSize="18sp"
-            android:layout_marginStart="8dp"
-            android:gravity="center"
-            android:textColor="@color/black"/>
+            android:orientation="horizontal">
+
+            <TextView
+                android:id="@+id/ownerNameTextView"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:textSize="18sp"
+                android:layout_weight="1"
+                android:layout_marginStart="8dp"
+                android:gravity="center"
+                android:textColor="@color/black"/>
+
+            <ImageView
+                android:id="@+id/opc_owner"
+                android:layout_width="23dp"
+                android:layout_height="23dp"
+                android:src="@drawable/tres_puntos"/>
+        </LinearLayout>
 
         <LinearLayout
             android:layout_width="match_parent"

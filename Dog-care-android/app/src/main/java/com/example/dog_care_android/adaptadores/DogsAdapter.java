@@ -107,9 +107,14 @@ public class DogsAdapter extends RecyclerView.Adapter<DogsAdapter.DogViewHolder>
     }
 
     // Método para actualizar la lista de perros
-    public void updateDogList(List<Dog> newDogList) {
-        this.dogs = newDogList;
-        notifyDataSetChanged();
+    public void updateDog(Dog updatedDog) {
+        for (int i = 0; i < dogs.size(); i++) {
+            if (dogs.get(i).getId() == (updatedDog.getId())) {
+                dogs.set(i, updatedDog);
+                notifyItemChanged(i);
+                break;
+            }
+        }
     }
 
 

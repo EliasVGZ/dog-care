@@ -6,6 +6,7 @@ import com.dog.care.dog_care.models.Owner;
 import com.dog.care.dog_care.repository.DogRepository;
 import com.dog.care.dog_care.repository.FamilyRepository;
 import com.dog.care.dog_care.repository.OwnerRepository;
+import jakarta.persistence.EntityNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -37,6 +38,18 @@ public class OwnerService {
 
     }
 
+    //Metodo para modificar nombre del dueño
+    public Owner modificarNombreDueno(Long id, String newName){
+        Owner owner = ownerRepository.findById(id).orElse(null);
+        if(owner != null){
+            owner.setName(newName);
+            return ownerRepository.save(owner);
+        }
+        return null;
+    }
+
+
+
     //Eliminar dueño
     public void eliminarDueno(Long id){
         ownerRepository.deleteById(id);
@@ -44,8 +57,8 @@ public class OwnerService {
 
 
     //Buscar dueño
-    public Owner buscarDueno(Long id){
-        return ownerRepository.findById(id).orElse(null);
+    public List<Owner> buscarDueno(Long familyId) {
+        return ownerRepository.findByFamilyId(familyId);
     }
 
     //Actualizar dueño

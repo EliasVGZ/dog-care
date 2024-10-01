@@ -3,6 +3,7 @@ package com.dog.care.dog_care.controller;
 import com.dog.care.dog_care.models.Dog;
 import com.dog.care.dog_care.models.Owner;
 import com.dog.care.dog_care.service.OwnerService;
+import jakarta.persistence.EntityNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -34,11 +35,25 @@ public class OwnerController {
     public void eliminarDueno(@PathVariable Long id) {
         ownerService.eliminarDueno(id);
     }
-    
-    //Buscar dueno pasandole id
-    @GetMapping("/{id}")
-    public Owner buscarDueno(@PathVariable Long id) {
-        return ownerService.buscarDueno(id);
+
+    //Metodo para modificar nombre del dueno
+    @PutMapping("/{id}/name")
+    public ResponseEntity<Owner> updateOwnerName(@PathVariable Long id, @RequestBody String newName) {
+        Owner updatedOwner = ownerService.modificarNombreDueno(id, newName);
+        if (updatedOwner == null) {
+            return ResponseEntity.notFound().build();
+        }
+        return ResponseEntity.ok(updatedOwner);
+    }
+
+    //Metodo para buscar dueno por id de la fmailia
+    @GetMapping("/family/{familyId}")
+    public ResponseEntity<List<Owner>> getOwnersByFamilyId(@PathVariable Long familyId) {
+        List<Owner> owners = ownerService.buscarDueno(familyId);
+        if (owners.isEmpty()) {
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).body(null);
+        }
+        return ResponseEntity.ok(owners);
     }
     
     //Actualizar dueno

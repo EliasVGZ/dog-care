@@ -125,9 +125,6 @@ public class AnhadirOwners extends AppCompatActivity implements View.OnClickList
                     // Crear un nuevo objeto Owner con el nombre proporcionado
                     Owner newOwner = new Owner();
                     newOwner.setName(ownerName);
-
-                    ownerList.add(newOwner);
-                    addOwnerAdapter.notifyDataSetChanged();
                     etOwnerName.setText("");
 
                     // Enviar la solicitud para crear el dueño
@@ -226,15 +223,24 @@ public class AnhadirOwners extends AppCompatActivity implements View.OnClickList
 
 
 
+
     private void createOwner(long familyId, Owner owner) {
 
         // Enviar solicitud para crear el dueño
         Call<Owner> call = ownerService.createOwner(familyId, owner);
         call.enqueue(new Callback<Owner>() {
+            @SuppressLint("NotifyDataSetChanged")
             @Override
             public void onResponse(Call<Owner> call, Response<Owner> response) {
-                if (response.isSuccessful()) {
-                    // El dueño se creó exitosamente
+                if (response.isSuccessful() && response.body() != null) {
+                    Owner createdOwner = response.body();  // Este contiene el ID generado
+
+                    Log.d("Owner ID", "El ID del nuevo dueño es: " + createdOwner.getId());
+
+
+                    ownerList.add(createdOwner);  // Asegúrate de agregar el owner con el ID generado
+                    addOwnerAdapter.notifyDataSetChanged();
+
                     Toast.makeText(AnhadirOwners.this, "Dueño añadido correctamente", Toast.LENGTH_SHORT).show();
                 } else {
                     // Manejar errores
@@ -249,6 +255,7 @@ public class AnhadirOwners extends AppCompatActivity implements View.OnClickList
             }
         });
     }
+
 
     private void showDatePicker() {
         final Calendar calendar = Calendar.getInstance();
